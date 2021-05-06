@@ -1,0 +1,248 @@
+\documentclass[12pt, a4paper]{extarticle}
+\usepackage{GOST}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage[detect-all]{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{tempora}
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\usepackage{listings}
+\lstset{ 
+	language=Prolog,
+	basicstyle = \ttfamily\color{blue},
+	moredelim = [s][\color{black}]{(}{)},
+	tabsize=4,
+	literate =
+	{:-}{{\textcolor{black}{:-}}}2
+	{,}{{\textcolor{black}{,}}}1
+	{.}{{\textcolor{black}{.}}}1
+}
+
+
+
+\begin{document}
+	
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|p{400pt}|} 
+		\hline
+		\begin{tabular}[c]{@{}c@{}} \includegraphics[scale=1]{source/b_logo.jpg} \\\end{tabular} &
+		\footnotesize\begin{tabular}[c]{@{}c@{}}\textbf{Министерство~науки~и~высшего~образования~Российской~Федерации}\\\textbf{Федеральное~государственное~бюджетное~образовательное~учреждение}\\\textbf{~высшего~образования}\\\textbf{«Московский~государственный~технический~университет}\\\textbf{имени~Н.Э.~Баумана}\\\textbf{(национальный~исследовательский~университет)»}\\\textbf{(МГТУ~им.~Н.Э.~Баумана)}\\\end{tabular}  \\
+		\hline
+	\end{tabular}
+\end{table}
+\noindent\rule{\textwidth}{4pt}
+\noindent\rule[14pt]{\textwidth}{1pt}
+\hfill 
+\noindent
+\makebox{ФАКУЛЬТЕТ~}%
+\makebox[\textwidth][l]{\underline{~«Информатика и системы управления»~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}%
+\\
+\noindent
+\makebox{КАФЕДРА~}%
+\makebox[\textwidth][l]{\underline{~«Программное обеспечение ЭВМ и информационные технологии»~}}%
+\\
+
+\begin{center}
+	\vspace{1.5cm}
+	{\bf\huge Отчёт\par}
+	{\bf\Large по лабораторной работе № 19\par}
+	\vspace{0.7cm}
+\end{center}
+
+
+\noindent
+\makebox{\large{\bf Название:}~~~}
+\makebox[\textwidth][l]{\large\underline{~Обработка списков на Prolog~}}\\
+
+\noindent
+\makebox{\large{\bf Дисциплина:}~~~}
+\makebox[\textwidth][l]{\large\underline{~Функциональное и логическое программирование~}}\\
+
+\vspace{1.5cm}
+\noindent
+\begin{tabular}{l c c c c c}
+	Студент      & ~ИУ7-65Б~               & \hspace{2.5cm} & \hspace{2cm}                 & &  Д.В. Сусликов \\\cline{2-2}\cline{4-4} \cline{6-6} 
+	\hspace{3cm} & {\footnotesize(Группа)} &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+\end{tabular}
+
+\noindent
+\begin{tabular}{l c c c c}
+	Преподаватель & \hspace{5cm}   & \hspace{2cm}                 & & ~~~~~~Н.Б. Толпинская~~~~~~\\\cline{3-3} \cline{5-5} 
+	\hspace{3cm}  &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+\end{tabular}
+
+\vspace{0.6cm}
+\begin{center}	
+	\vfill
+	\large \textit {Москва, 2021}
+\end{center}
+
+\thispagestyle {empty}
+\pagebreak
+
+\clearpage
+
+
+\textbf{Цель работы} - изучить структуру, особенности и принципы оформления программы, и способ выполнения программы на Prolog
+
+\textbf{Задание}
+
+Используя хвостовую рекурсию, разработать эффективную программу, позволяющую:
+\begin{enumerate}
+	\item Найти длину списка (по верхнему уровню);
+	\item Найти сумму элементов числового списка 
+	\item Найти сумму элементов числового списка, стоящих на нечетных позициях исходного списка (нумерация от 0) 
+\end{enumerate}
+
+Убедиться в правильности результатов. 
+
+Для одного из вариантов вопроса и одного из заданий составить таблицу, отражающую конкретный порядок работы системы. 
+
+
+\hfill
+
+\textbf{Листинг:}
+
+\begin{lstlisting}
+	domains
+	list = integer*
+	
+	predicates
+		len(list, integer)
+		len(list, integer, integer)
+		
+		sum(list, integer)
+		sum(list, integer, integer)
+		
+		sum2(list, integer)
+		sum2(list, integer, integer)
+	
+	clauses
+		len([], R, R):- !.
+		len([_|T], R, Res):- R1 = R + 1, len(T, R1, Res).
+		len([H|T], Res):- len([H|T], 0, Res).
+		
+		sum([], R, R):- !.
+		sum([H|T], R, Res):- R1 = R + H, sum(T, R1, Res).
+		sum([H|T], Res):- sum([H|T], 0, Res).
+		
+		sum2([], R, R):- !.
+		sum2([_, H|T], R, Res):- R1 = R + H, sum2(T, R1, Res).
+		sum2([H|T], Res):- sum2([H|T], 0, Res).
+		
+	
+	goal
+		%len([1,2,3,4], Res).
+		%sum([1,2,3,5], Res).
+		sum2([1,2,3,11], Res).
+\end{lstlisting}
+
+\newpage
+\textbf{Приведем таблицу для нахождения суммы. }\par
+sum([1,2,4], Res)\par
+Текст процедуры:
+\begin{lstlisting}
+1:		sum([], R, R):- !.
+2:		sum([H|T], R, Res):- R1 = R + H, sum(T, R1, Res).
+3:		sum([H|T], Res):- sum([H|T], 0, Res).
+\end{lstlisting}\par
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		№ шага & \begin{tabular}[c]{@{}l@{}}Текущая \\ резольвента - ТР\end{tabular}          & \begin{tabular}[c]{@{}l@{}}ТЦ, выбираемые правила:\\ сравниваемые термы,\\ подстановка\end{tabular}                                        & \begin{tabular}[c]{@{}l@{}}Дальнейшие действия\\ с комментариями\end{tabular}    \\ \hline
+		1      & sum({[}1,2{]}, 0, Res).                                                      & ТЦ:  sum({[}1,2{]}, 0, Res)                                                                                                                & \begin{tabular}[c]{@{}l@{}}Поиск знания\\ с начала БЗ\end{tabular}               \\ \hline
+		& sum({[}1,2{]}, 0, Res).                                                      & \begin{tabular}[c]{@{}l@{}}ПР1:\\ {[}{]} = {[}1,2{]}\\ R = 0\\ R = Res\\ Неудача\end{tabular}                                              & \begin{tabular}[c]{@{}l@{}}Переход к\\ следующему\\ заголовку БЗ\end{tabular}    \\ \hline
+		& sum({[}1,2{]}, 0, Res).                                                      & \begin{tabular}[c]{@{}l@{}}ПР2:\\ H|T{]} = {[}1,2{]}\\ R = 0\\ Res = Res\\ \\ Успех\\ H = 1\\ T = {[}2{]}\\ R = 0\\ Res = Res\end{tabular} & \begin{tabular}[c]{@{}l@{}}Тело ПР2\\ заменяет цель\\ в резольвенте\end{tabular} \\ \hline
+		2      & \begin{tabular}[c]{@{}l@{}}R1 = 0 + 1, \\ sum({[}2{]}, R1, Res)\end{tabular} & R1 = 1                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}R1 = 0 + 1 заменяется\\ на пустое тело\end{tabular}   \\ 
+	\end{tabular}
+\end{table}
+
+\newpage
+
+	\begin{table}[h!]
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			3 & sum({[}2{]}, 1, Res)                                                        & ТЦ: sum({[}2{]},1,Res)                                                                                                                  & \begin{tabular}[c]{@{}l@{}}Поиск знания с\\ начала БЗ\end{tabular}                             \\ \hline
+			& sum({[}2{]}, 1, Res)                                                        & \begin{tabular}[c]{@{}l@{}}ПР1:\\ {[}{]} = {[}2{]}\\ R = 1\\ R = Res\\ Неудача\end{tabular}                                             & \begin{tabular}[c]{@{}l@{}}Переход к\\ следующему\\ заголовку БЗ\end{tabular}                  \\ \hline
+			& sum({[}2{]}, 1, Res).                                                       & \begin{tabular}[c]{@{}l@{}}ПР2:\\ H|T{]} = {[}2{]}\\ R = 1\\ Res = Res\\ \\ Успех\\ H = 2\\ T = {[}{]}\\ R = 1\\ Res = Res\end{tabular} & \begin{tabular}[c]{@{}l@{}}Тело ПР2\\ заменяет цель\\ в резольвенте\end{tabular}               \\ \hline
+			4 & \begin{tabular}[c]{@{}l@{}}R1 = 1 + 2, \\ sum({[}{]}, R1, Res)\end{tabular} & R1 = 3                                                                                                                                  & \begin{tabular}[c]{@{}l@{}}R1 = 1 + 2 заменяется\\ на пустое тело в\\ резольвенте\end{tabular} \\ \hline
+			5 & sum({[}{]}, 3, Res)                                                         & ТЦ: sum({[}{]},3,Res)                                                                                                                   & \begin{tabular}[c]{@{}l@{}}Поиск знания с\\ начала БЗ\end{tabular}                             \\ \hline
+			& sum({[}{]}, 3, Res)                                                         & \begin{tabular}[c]{@{}l@{}}ПР1:\\ {[}{]} = {[}{]}\\ R = 3\\ R = Res\\ \\ Успех\\ {[}{]} = {[}{]}\\ R = 3\\ R = Res = 3\end{tabular}     & \begin{tabular}[c]{@{}l@{}}Тело ПР1\\ заменяет цель\\ в резольвенте\end{tabular}               \\ 
+		\end{tabular}
+	\end{table}	
+
+	\newpage
+	
+	\begin{table}[h!]
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			6 & !                                                           & \begin{tabular}[c]{@{}l@{}}!.\\ Истина\end{tabular}              & \begin{tabular}[c]{@{}l@{}}Отсечение.\\ ! заменяется на \\ пустое в резольвенте\end{tabular} \\ \hline
+			7 & Резольвента пуста                                           &                                                                  & \begin{tabular}[c]{@{}l@{}}Выводится Res = 3\\ Откат\end{tabular}                            \\ \hline
+			8 & !                                                           & \begin{tabular}[c]{@{}l@{}}!\\ Завершение \\ процедуры\end{tabular} & \begin{tabular}[c]{@{}l@{}}! заменяется на \\ пустое в резольвенте\end{tabular}              \\ \hline
+			7 & \begin{tabular}[c]{@{}l@{}}Резольвента\\ пуста\end{tabular} &                                                                  & \begin{tabular}[c]{@{}l@{}}Завершение работы\\ программы\end{tabular}                        \\ \hline
+		\end{tabular}
+	\end{table}
+
+\textbf{Вывод}\par
+Эффективность работы системы может быть достигнута за счет хвостовой
+рекурсии и использования отсечения в тех
+случаях, где заведомо известна единственность ответа на вопрос.
+
+\newpage
+
+\textbf{Ответы на вопросы}
+\begin{itemize}
+	\item[1)] Что такое рекурсия? Как организуется хвостовая рекурсия в Prolog? Как организовать выход из рекурсии в Prolog?\par	
+	Рекурсия – определение объекта через ссылку на самого себя. Один из
+	способов организации повторных вычислений. Для организации хвостовой рекурсии необходимо, чтобы рекурсивный вызов был последним в теле рекурсивного правила, и не оставалось других точек выбора. Выход из рекурсии осуществляется либо достижением базиса рекурсии, либо условием в теле правила.
+	
+	\item[2)] Какое первое состояние резольвенты?\par
+	Исходная резольвента содержит вопрос.
+	
+	\item[3)] В каких пределах программы уникальны переменные?\par
+	Именованные переменные уникальны в рамках предложения, анонимные - уникальны везде.
+	
+	\item[4)] В какой момент, и каким способом системе удается получить доступ к голове списка?\par	
+	Получить доступ к голове списка можно при его унификации со списком
+	вида [H | T], где H - голова, T - хвост.
+	
+	\item[5)] Каково назначение использования алгоритма унификации?\par
+	Алгоритм унификации необходим для того, чтобы подобрать знание, положительно отвечающее на поставленный вопрос.
+	
+	\item[6)] Каков результат работы алгоритма унификации?\par
+	Результатом работы алгоритма является значение переменной «неудача».
+	Если неудача = 1, то унификация невозможна; если неудача = 0, то унификация
+	прошла успешно, а побочным действием работы алгоритма является содержимое
+	результирующей ячейки – результирующая подстановка.
+	
+	\item[7)] Как формируется новое состояние резольвенты?\par
+	Резольвента меняется в 2 этапа:
+	\begin{itemize}
+		\item Редукция (замена вопроса на тело правила, заголовок которого был успешно унифицирован);
+		\item Применение подстановки.
+	\end{itemize}
+
+	\item[8)] Как применяется подстановка, полученная с помощью алгоритма
+	унификации – как глубоко?\par
+	В результате подстановки связываются переменные, которые еще не были
+	связаны. После связывания всех утверждений, будет напечатано значение
+	связанных переменных.
+	
+	\item[9)] В каких случаях запускается механизм отката?\par
+	В случае, когда унификация на текущем шаге завершается тупиковой
+	ситуацией, или был получен ответ «да».
+	
+	\item[10)]  Когда останавливается работа системы? Как это определяется на формальном уровне?\par
+	Когда резольвента пуста и все указатели находятся в конце БЗ.
+\end{itemize}
+
+\end{document}
