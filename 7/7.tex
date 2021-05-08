@@ -1,0 +1,272 @@
+\documentclass[12pt, a4paper]{extarticle}
+\usepackage{GOST}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage[detect-all]{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{tempora}
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\usepackage{listings}
+\lstset{ 
+	language=Prolog,
+	basicstyle=\small, 
+	numbers=left, 
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	showspaces=false,            
+	showstringspaces=false,      
+	showtabs=false,             
+	frame=single,            % рисовать рамку вокруг кода
+	tabsize=4,      
+	commentstyle=\color{green},
+	keywordstyle=\color{blue}\textbf,
+	numberstyle=\scriptsize\color{gray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},
+	captionpos=t,
+	breaklines=true,         % автоматически переносить строки 
+	breakatwhitespace=false, % переносить строки по пробелу
+	%escapeinside={\#*}{*)} 
+}
+
+
+
+
+\begin{document}
+	
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|p{400pt}|} 
+		\hline
+		\begin{tabular}[c]{@{}c@{}} \includegraphics[scale=1]{source/b_logo.jpg} \\\end{tabular} &
+		\footnotesize\begin{tabular}[c]{@{}c@{}}\textbf{Министерство~науки~и~высшего~образования~Российской~Федерации}\\\textbf{Федеральное~государственное~бюджетное~образовательное~учреждение}\\\textbf{~высшего~образования}\\\textbf{«Московский~государственный~технический~университет}\\\textbf{имени~Н.Э.~Баумана}\\\textbf{(национальный~исследовательский~университет)»}\\\textbf{(МГТУ~им.~Н.Э.~Баумана)}\\\end{tabular}  \\
+		\hline
+	\end{tabular}
+\end{table}
+\noindent\rule{\textwidth}{4pt}
+\noindent\rule[14pt]{\textwidth}{1pt}
+\hfill 
+\noindent
+\makebox{ФАКУЛЬТЕТ~}%
+\makebox[\textwidth][l]{\underline{~«Информатика и системы управления»~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}%
+\\
+\noindent
+\makebox{КАФЕДРА~}%
+\makebox[\textwidth][l]{\underline{~«Программное обеспечение ЭВМ и информационные технологии»~}}%
+\\
+
+\begin{center}
+	\vspace{1.5cm}
+	{\bf\huge Отчёт\par}
+	{\bf\Large по лабораторной работе № 17\par}
+	\vspace{0.7cm}
+\end{center}
+
+
+\noindent
+\makebox{\large{\bf Название:}~~~}
+\makebox[\textwidth][l]{\large\underline{~Формирование эффективных программ на Prolog~}}\\
+
+\noindent
+\makebox{\large{\bf Дисциплина:}~~~}
+\makebox[\textwidth][l]{\large\underline{~Функциональное и логическое программирование~}}\\
+
+\vspace{1.5cm}
+\noindent
+\begin{tabular}{l c c c c c}
+	Студент      & ~ИУ7-65Б~               & \hspace{2.5cm} & \hspace{2cm}                 & &  Д.В. Сусликов \\\cline{2-2}\cline{4-4} \cline{6-6} 
+	\hspace{3cm} & {\footnotesize(Группа)} &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+\end{tabular}
+
+\noindent
+\begin{tabular}{l c c c c}
+	Преподаватель & \hspace{5cm}   & \hspace{2cm}                 & & ~~~~~~Н.Б. Толпинская~~~~~~\\\cline{3-3} \cline{5-5} 
+	\hspace{3cm}  &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+\end{tabular}
+
+\vspace{0.6cm}
+\begin{center}	
+	\vfill
+	\large \textit {Москва, 2021}
+\end{center}
+
+\thispagestyle {empty}
+\pagebreak
+
+\clearpage
+
+\textbf{Задание}\par
+
+\begin{enumerate}
+	\item Максимум из двух чисел
+	\begin{enumerate}
+		\item без использования отсечения,
+		\item с использованием отсечения;
+	\end{enumerate}
+	\item Максимум из трех чисел 
+	\begin{enumerate}
+		\item без использования отсечения,
+		\item с использованием отсечения;
+	\end{enumerate}
+\end{enumerate}
+
+Убедиться в правильности результатов.
+
+Для каждого случая пункта 2 обосновать необходимость всех условий тела. 
+
+Для одного из вариантов вопроса и каждого варианта задания 2 составить таблицу, отражающую конкретный порядок работы системы
+
+\hfill
+
+\textbf{Листинг:}
+
+\begin{lstlisting}
+domains
+	num = integer.
+
+predicates
+	max(num, num, num).
+	max_cut(num, num, num).
+
+clauses
+	max_cut(X1, X2, X1):- X1 >= X2, !.
+	max_cut(_, X2, X2).	
+	
+	max(X1, X2, X1):- X1 >= X2.
+	max(X1, X2, X1):- X2 > X1.
+\end{lstlisting} \par
+\newpage
+\textbf{Листинг:}\par
+
+\begin{lstlisting}
+	domains
+		num = integer.
+	
+	predicates	
+		max3(num,num, num, num).
+		max3_cut(num,num, num, num).
+	
+	clauses
+		max3(X1, X2, X3, X1):- X1 >= X2, X1 >= X3.
+		max3(X1, X2, X3, X2):- X2 > X1, X2 >= X3.
+		max3(X1, X2, X3, X3):- X3 > X1, X3 > X2.
+		
+		max3_cut(X1, X2, X3, X1):- X1 > X2, X1 > X3, !.
+		max3_cut(_, X2, X3, X2):- X2 > X3, !.
+		max3_cut(_, _, X3, X3).
+\end{lstlisting}
+\newpage
+\textbf{Таблица. }\par
+2a) max3(2, 3, 1, Res)\par
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		\begin{tabular}[c]{@{}l@{}}№\\ шага\end{tabular} & \begin{tabular}[c]{@{}l@{}}Состояние резольвенты\\ и вывод\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Для каких термов запускается\\ алгоритм унификации и каков\\ результат\end{tabular}                                                              & Дальнейшие действия                                                             \\ \hline
+		0                                                & max3(2 , 3, 1, Res)                                                                 &                                                                                                                                                                             &                                                                                 \\ \hline
+		1                                                & max3(2, 3, 1, Res)                                                                  & \begin{tabular}[c]{@{}l@{}}T1 = max3(2, 3, 1, Res)\\ T2 = max3(X1, X2, X3, X1)\\ Успех. Унифицируемы.\\ \\ Подстановка:\\ \{X1 = 2, X2 = 3, X3 = 1, X1 = Res\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\end{tabular}            \\ \hline
+		2                                                & \begin{tabular}[c]{@{}l@{}}2  \textgreater{}= 3,\\ 2 \textgreater{}= 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}2 \textgreater{}= 3\\ Ложь.\end{tabular}                                                                                                         & Откат                                                                           \\ \hline
+		3                                                & max3(2, 3, 1, Res)                                                                  & \begin{tabular}[c]{@{}l@{}}T1 = max3(2, 3, 1, Res)\\ T2 = max3(X1, X2, X3, X2)\\ Успех. Унифицируемы.\\ \\ Подстановка:\\ \{X1 = 2, X2 = 3, X3 = 1, X2 = Res\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\end{tabular}            \\ \hline
+		4                                                & \begin{tabular}[c]{@{}l@{}}3 \textgreater 2,\\ 3 \textgreater{}= 1\end{tabular}     & \begin{tabular}[c]{@{}l@{}}3 \textgreater 2\\ Верно.\end{tabular}                                                                                                           & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\\ (пустое)\end{tabular} \\ \hline
+		5                                                & 3 \textgreater{}= 1                                                                 & \begin{tabular}[c]{@{}l@{}}3 \textgreater 1\\ Верно\end{tabular}                                                                                                            & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\\ (пустое)\end{tabular} \\ \hline
+		6                                                & \begin{tabular}[c]{@{}l@{}}Резольвента пуста\\ Вывод Res = 3\end{tabular}           &                                                                                                                                                                             & Откат.                                                                          \\ \hline
+                                                                                                              
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		7  & max3(2, 3, 1, Res)                                                           & \begin{tabular}[c]{@{}l@{}}T1 = max3(2, 3, 1, Res)\\ T2 = max3(X1, X2, X3, X3)\\ Успех. Унифицируемы.\\ \\ Подстановка:\\ \{X1 = 2, X2 = 3, X3 = 1, X3 = Res\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\end{tabular}         \\ \hline
+		8  & \begin{tabular}[c]{@{}l@{}}1 \textgreater 2,\\ 1 \textgreater 3\end{tabular} & \begin{tabular}[c]{@{}l@{}}1 \textgreater 2\\ Неверно.\end{tabular}                                                                                                         & Откат.                                                                       \\ \hline
+		9  & max3(2, 3, 1, Res)                                                           & \begin{tabular}[c]{@{}l@{}}T1 = max3(2, 3, 1, Res)\\ T2 = max3\_cut(...)\\ Неудача. Не унифицируемы.\end{tabular}                                                           & \begin{tabular}[c]{@{}l@{}}Переход к следующему\\ заголовку БЗ.\end{tabular} \\ \hline
+		& ...                                                                          & ...                                                                                                                                                                         & ...                                                                          \\ \hline
+		10 & max3(2, 3, 1, Res)                                                           & \begin{tabular}[c]{@{}l@{}}T1 = max3(2, 3, 1, Res)\\ T2 = max3\_cut(...)\\ Неудача. Не унифицируемы.\end{tabular}                                                           & \begin{tabular}[c]{@{}l@{}}Все предложения БЗ\\ пройдены.\end{tabular}       \\ \hline
+		11 & Резольвента.                                                                 &                                                                                                                                                                             & \begin{tabular}[c]{@{}l@{}}Завершение работы\\ программы.\end{tabular}       \\ \hline
+	\end{tabular}
+\end{table}
+\newpage
+
+\textbf{Таблица. }\par
+2b) max3\_cut(2, 3, 1, Res)\par
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		\begin{tabular}[c]{@{}l@{}}№\\ шага\end{tabular} & \begin{tabular}[c]{@{}l@{}}Состояние резольвенты\\ и вывод\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Для каких термов запускается\\ алгоритм унификации и каков\\ результат\end{tabular}                                                                        & Дальнейшие действия                                                             \\ \hline
+		0                                                & max3\_cut(2 , 3, 1, Res)                                                           &                                                                                                                                                                                       &                                                                                 \\ \hline
+		1                                                & max3\_cut(2, 3, 1, Res)                                                            & \begin{tabular}[c]{@{}l@{}}T1 = max3\_cut(2, 3, 1, Res)\\ T2 = max3(...)\\ Неудача. Не унифицируемы.\end{tabular}                                                                     & \begin{tabular}[c]{@{}l@{}}Переход к следующему\\ заголовку БЗ.\end{tabular}    \\ \hline
+		& ...                                                                                & ...                                                                                                                                                                                   & ...                                                                             \\ \hline
+		2                                                & max3\_cut(2, 3, 1, Res)                                                            & \begin{tabular}[c]{@{}l@{}}T1 = max3\_cut(2, 3, 1, Res)\\ T2 = max3\_cut(X1, X2, X3, X1)\\ Успех. Унифицируемы.\\ \\ Подстановка:\\ \{X1 = 2, X2 = 3, X3 = 1, X1 = Res\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\end{tabular}            \\ \hline
+		3                                                & \begin{tabular}[c]{@{}l@{}}2  \textgreater 3,\\ 2 \textgreater 1,\\ !\end{tabular} & \begin{tabular}[c]{@{}l@{}}2 \textgreater 3\\ Ложь.\end{tabular}                                                                                                                      & Откат                                                                           \\ \hline
+		4                                                & max3\_cut(2, 3, 1, Res)                                                            & \begin{tabular}[c]{@{}l@{}}T1 = max3\_cut(2, 3, 1, Res)\\ T2 = max3\_cut(\_, X2, X3, X2)\\ Успех. Унифицируемы.\\ \\ Подстановка:\\ \{X1 = 2, X2 = 3, X3 = 1, X2 = Res\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\end{tabular}            \\ \hline
+		5                                                & \begin{tabular}[c]{@{}l@{}}3 \textgreater 1,\\ !\end{tabular}                      & \begin{tabular}[c]{@{}l@{}}3 \textgreater 1\\ Верно.\end{tabular}                                                                                                                     & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\\ (пустое)\end{tabular} \\ \hline
+		6                                                & !                                                                                  & \begin{tabular}[c]{@{}l@{}}!\\ Истина.\end{tabular}                                                                                                                                   & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\\ (пустое)\end{tabular} \\ \hline
+		7                                                & \begin{tabular}[c]{@{}l@{}}Резольвента пуста\\ Вывод Res = 3\end{tabular}          &                                                                                                                                                                                       & Откат.                                                                          \\ \hline
+	\end{tabular}
+\end{table}
+\newpage
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		8 & !                  & \begin{tabular}[c]{@{}l@{}}!\\ Завершение процедуры\end{tabular} & \begin{tabular}[c]{@{}l@{}}Замена на тело\\ предложения\\ (пустое)\end{tabular} \\ \hline
+		9 & Резольвента пуста. &                                                                  & \begin{tabular}[c]{@{}l@{}}Завершения работы\\ программы\end{tabular}           \\ \hline
+	\end{tabular}
+\end{table}
+
+\textbf{Ответы на вопросы}\par
+
+\begin{enumerate} 
+	
+	\item[1)] В каком случае система запускает алгоритм унификации? (Как эту необходимость на формальном уровне распознает система?)
+	
+	Система запускает алгоритм унификации, когда резольвента не пуста.
+	
+	\item[2)] Каковы назначение и результат использования алгоритма унификации? 
+	
+	Алгоритм унификации необходим для того, чтобы подобрать знание, чтобы
+	ответить на поставленный вопрос. Результатом работы алгоритма является
+	значение переменной «неудача». Если неудача = 1, то унификация невозможна;
+	если неудача = 0, то унификация прошла успешно, а побочным действием работы
+	алгоритма является содержимое результирующей ячейки – результирующая
+	подстановка.
+	
+	\item[3)] Какое первое состояние резольвенты?
+	
+	Вопрос. 
+	
+	\item[4)] Как меняется резольвента?
+	
+	Резольвента меняется в 2 этапа:
+	\begin{itemize}
+		\item Редукция (замена вопроса на тело правила, заголовок которого был успешно унифицирован);
+		\item Применение подстановки.
+	\end{itemize}
+	
+	\item[5)] В каких пределах программы уникальны переменные? 
+	
+	Именованные переменные уникальны в рамках предложения, анонимные --  везде.
+		
+	\item[6)] Как применяется подстановка, полученная с помощью алгоритма унификации?
+	
+	В результате подстановки связываются переменные, которые еще не были
+	связаны. После связывания всех утверждений, будет напечатано значение
+	связанных переменных.
+	
+	\item[7)] В каких случаях запускается механизм отката?
+	
+	В случае, когда унификация на текущем шаге завершается тупиковой
+	ситуацией, или был получен ответ «да».	
+\end{enumerate}
+
+\end{document}

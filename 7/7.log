@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.1)  8 MAY 2021 23:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.1)  9 MAY 2021 01:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**6.tex
-(./6.tex
+**7.tex
+(./7.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/extsizes/extarticle.cls
@@ -432,9 +432,9 @@ Package tocbasic Info: setting babel extension for `nls' on input line 180.
 \nomitemsep=\skip55
 )
 \@nomenclaturefile=\write3
-\openout3 = `6.nlo'.
+\openout3 = `7.nlo'.
 
-Package nomencl Info: Writing nomenclature file 6.nlo on input line 33.
+Package nomencl Info: Writing nomenclature file 7.nlo on input line 33.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -2197,8 +2197,8 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2020/03/24 1.8d listings language file
-) (./6.aux)
-\openout1 = `6.aux'.
+) (./7.aux)
+\openout1 = `7.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
@@ -2368,9 +2368,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 42.
 LaTeX Info: Redefining \pageref on input line 42.
 LaTeX Info: Redefining \nameref on input line 42.
- (./6.out) (./6.out)
+ (./7.out) (./7.out)
 \@outlinefile=\write5
-\openout5 = `6.out'.
+\openout5 = `7.out'.
 
 \c@mv@tabular=\count351
 \c@mv@boldtabular=\count352
@@ -2464,68 +2464,40 @@ LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/it' will be
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./sourc
 e/b_logo.jpg>]
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 124.
+(Font)              scaled to size 10.95pt on input line 130.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 125.
+(Font)              scaled to size 8.0pt on input line 131.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 126.
- [2
-
-]
+(Font)              scaled to size 10.95pt on input line 132.
 LaTeX Font Info:    Trying to load font information for TS1+Tempora-TLF on inpu
-t line 148.
+t line 139.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tempora/TS1Tempora-TLF.fd
 File: TS1Tempora-TLF.fd 2016/02/02 (autoinst) Font definitions for TS1/Tempora-
 TLF.
 )
 LaTeX Font Info:    Font shape `TS1/Tempora-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 148.
+(Font)              scaled to size 10.95pt on input line 139.
 
-[3]
-<source/1.png, id=79, 110.4125pt x 61.22874pt>
-File: source/1.png Graphic file (type png)
-<use source/1.png>
-Package pdftex.def Info: source/1.png  used on input line 178.
-(pdftex.def)             Requested size: 108.16406pt x 59.98505pt.
-<source/2.png, id=81, 99.37125pt x 54.2025pt>
-File: source/2.png Graphic file (type png)
-<use source/2.png>
-Package pdftex.def Info: source/2.png  used on input line 182.
-(pdftex.def)             Requested size: 108.16406pt x 59.00014pt.
-<source/3.png, id=82, 93.34875pt x 85.31876pt>
-File: source/3.png Graphic file (type png)
-<use source/3.png>
-Package pdftex.def Info: source/3.png  used on input line 188.
-(pdftex.def)             Requested size: 108.16406pt x 98.86435pt.
-<source/4.png, id=83, 108.405pt x 43.16125pt>
-File: source/4.png Graphic file (type png)
-<use source/4.png>
-Package pdftex.def Info: source/4.png  used on input line 192.
-(pdftex.def)             Requested size: 108.16406pt x 43.06761pt.
-<source/5.png, id=84, 91.34125pt x 60.225pt>
-File: source/5.png Graphic file (type png)
-<use source/5.png>
-Package pdftex.def Info: source/5.png  used on input line 197.
-(pdftex.def)             Requested size: 91.34102pt x 60.22484pt.
- [4 <./source/1.png> <./source/2.png> <./source/3.png> <./source/4.png> <./sour
-ce/5.png>]
-Overfull \hbox (36.64948pt too wide) in paragraph at lines 205--217
+[2
+
+] [3]
+Overfull \hbox (12.1095pt too wide) in paragraph at lines 170--182
 [][] 
  []
 
-[5]
-Overfull \hbox (24.50546pt too wide) in paragraph at lines 222--232
+[4] [5]
+Overfull \hbox (19.98149pt too wide) in paragraph at lines 203--216
 [][] 
  []
 
 [6]
 LaTeX Font Info:    Font shape `TS1/Tempora-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 260.
- [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 280.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
- (./6.aux
+(Font)              scaled to size 12.0pt on input line 252.
+ [7] [8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
+ (./7.aux
 LaTeX Font Info:    Trying to load font information for T2B+Tempora-TLF on inpu
 t line 22.
 
@@ -2535,30 +2507,30 @@ File: t2btempora-tlf.fd 2015/09/13 Font definitions for T2B/Tempora-TLF.
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 22.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 280.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 280.
-Package rerunfilecheck Info: File `6.out' has not changed.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
+Package rerunfilecheck Info: File `7.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 280.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
  ) 
 Here is how much of TeX's memory you used:
- 44107 strings out of 480608
- 971667 string characters out of 5903630
- 1615784 words of memory out of 5000000
- 59154 multiletter control sequences out of 15000+600000
+ 44040 strings out of 480608
+ 970647 string characters out of 5903630
+ 1543783 words of memory out of 5000000
+ 59110 multiletter control sequences out of 15000+600000
  580663 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,19n,119p,740b,2361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 81i,19n,119p,740b,1386s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/tempora/tmp_ac5xuc.enc}{/
 usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/tempora/t2a-tempora.enc}</usr
 /local/texlive/2020/texmf-dist/fonts/type1/public/tempora/Tempora-Bold.pfb></us
 r/local/texlive/2020/texmf-dist/fonts/type1/public/tempora/Tempora-Italic.pfb><
 /usr/local/texlive/2020/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.p
 fb>
-Output written on 6.pdf (7 pages, 120959 bytes).
+Output written on 7.pdf (8 pages, 114988 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
- 67 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
+ 50 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
